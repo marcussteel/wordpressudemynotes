@@ -3,23 +3,12 @@
 <?php get_header(); ?>
 
 <div class="container pt-5 pb-5">
-    <h1>This is a event post you can find in  single-program.php</h1>
-<?php single_cat_title(); ?>
-
-<!-- resim varsa ekle    -->
-    <?php if (has_post_thumbnail( )):?>
-    <img src="<?php the_post_thumbnail_url(); ?>" class="img-fluid pt-5 pb-5">
-    <?php endif; ?>
-
-
-<!-- içerik varsa ekle  -->
-    <?php if (have_posts(  )): while (have_posts(  )) : the_post(  ); ?>
         <div class="page-banner">
     <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
     <div class="page-banner__content container container--narrow">
       <h1 class="page-banner__title"><?php the_title(); ?></h1>
       <div class="page-banner__intro">
-        <p>DONT FORGET TO REPLACE ME LATER</p>
+            <h1>This is a event post you can find in  single-program.php</h1>
       </div>
     </div>  
   </div>
@@ -34,6 +23,59 @@
     </div>
 <div class="generic-content"> <?php the_content( ); ?>
 
+
+<!-- Related professor ları göstereceğiz.  -->
+<?php
+                    $today= date('Ymd');
+                    $homeProfessors = new WP_Query(array(
+                      'posts_per_page'=>-1, // -1 means all associated professors
+                      // 'category_name'=>'blog',
+                      'post_type' => 'professor',
+                      // sorting the closest date, default one is post_date
+                      // 'meta_key' => 'event_date',
+                      'orderby' => 'title', //post_date, title  => meta_value  
+                      'order' => 'ASC', //'DESC','ASC'
+                      //disable event that time has passed
+                      'meta_query' => array(
+                          // array(
+                          //   'key' => 'event_date',
+                          //   'compare' => '>=',
+                          //   'value' => $today,
+                          //   'type' => 'numeric'
+                          // ),
+                        array(
+                            'key' => 'related_programs',//array(12,120,1250)
+                            'compare' => 'LIKE',
+                            'value' => '"' . get_the_ID(  )  . '"'// "12"
+                        )
+                        )));
+                        if ($homeProfessors->have_posts()){
+                        echo '<hr class="section-break"';
+                       echo '<h2 class="headline headline--medium"> ' . get_the_title() . ' professors</h2>';
+                                              
+                       echo '<ul class="professor-cards">';
+                    while ($homeProfessors-> have_posts(  )){
+                    $homeProfessors -> the_post(  );?>
+                    <li class="professor-card__list-item">
+                      <a class="professor-card" href="<?php the_permalink() ?> "> 
+                        <img class="professor-card__img" src="<?php the_post_thumbnail_url( ) ?>" alt="">
+                        <span class="professor-card__name"><?php the_title( ) ?></span>
+                      </a>
+                    
+                    </li>
+                    <?php } 
+                     echo '</ul>';                 
+                    wp_reset_postdata(  );
+                    
+                    ?>
+ <?php }; 
+?>
+<!-- Related professor ları gösterdik.  -->
+
+
+
+
+<!-- Related programları (gelecek olanları) göstereceğiz.  -->
 <?php
                     $today= date('Ymd');
                     $homePageEvents = new WP_Query(array(
@@ -58,6 +100,9 @@
                             'value' => '"' . get_the_ID(  )  . '"'// "12"
                         )
                         )));
+                        if ($homePageEvents->have_posts()){
+                        echo '<hr class="section-break"';
+                       echo '<h2 class="headline headline--medium">Upcoming ' . get_the_title() . ' Events</h2>';
                     while ($homePageEvents-> have_posts(  )){
                     $homePageEvents -> the_post(  );?>
                         <div class="event-summary">
@@ -83,13 +128,15 @@
                     <?php
                     } wp_reset_postdata(  );
                     ?>
+                        
 
 </div>
 </div>
 
-    <?php endwhile; endif; ?>
 
+<?php }; 
+?>
            
-</div>
+
 
 <?php get_footer(); ?>

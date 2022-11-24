@@ -3,8 +3,6 @@
 <?php get_header(); ?>
 
 <div class="container pt-5 pb-5">
-    <h1>This is a post , not a page  you can find me in single php</h1>
-<?php single_cat_title(); ?>
 
 <!-- resim varsa ekle    -->
     <?php if (has_post_thumbnail( )):?>
@@ -19,7 +17,7 @@
     <div class="page-banner__content container container--narrow">
       <h1 class="page-banner__title"><?php the_title(); ?></h1>
       <div class="page-banner__intro">
-        <p> DONT FORGET TO REPLACE ME LATER</p>
+            <h1>This is a post , not a page  you can find me in single php</h1>
       </div>
     </div>  
   </div>

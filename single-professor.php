@@ -3,36 +3,33 @@
 <?php get_header(); ?>
 
 <div class="container pt-5 pb-5">
-
-
-
-<!-- resim varsa ekle    -->
-    <?php if (has_post_thumbnail( )):?>
-    <img src="<?php the_post_thumbnail_url(); ?>" class="img-fluid pt-5 pb-5">
-    <?php endif; ?>
-
-
-<!-- içerik varsa ekle  -->
-    <?php if (have_posts(  )): while (have_posts(  )) : the_post(  ); ?>
         <div class="page-banner">
     <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
     <div class="page-banner__content container container--narrow">
       <h1 class="page-banner__title"><?php the_title(); ?></h1>
       <div class="page-banner__intro">
-            <h1>This is a event post you can find in  single-event.php</h1>
+        <h1>This is a professor post you can find in  single-professor.php</h1>
       </div>
     </div>  
   </div>
  <div class="container container--narrow page-section">
 
- <!-- metabox bölümü  -->
- <div class="metabox metabox--position-up metabox--with-home-link">
-      <p><a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link( 'event' ) ?>">
-      <i class="fa fa-home" aria-hidden="true"></i>
-       Events Home </a> <span class="metabox__main"><?php the_title(); ?>
-        </span></p>
+
+
+
+
+ <!-- contenti göster  ve resimi ekle-->
+<div class="generic-content">
+        <div class="row group">
+            <div class="one-third">
+                <?php the_post_thumbnail('professorPortrait' );  ?>
+            </div>
+            <div class="two-thirds">
+                <?php the_content( ); ?>
+            </div>
+        </div>
+
 </div>
-<div class="generic-content"> <?php the_content( ); ?></div>
 </div>
 
 
@@ -42,7 +39,7 @@
     // print_r($relatedPrograms);
     if($relatedPrograms){
         echo '<hr class= "section-break" ';
-        echo '<h2 class="headline headline--medium">Related Program(s)</h2>';
+        echo '<h2 class="headline headline--medium">Subject(s) Thaught</h2>';
         echo '<ul class="link-list min-list">';
         foreach($relatedPrograms as $program){?>
             <li><a href="<?php echo get_the_permalink($program) ?>"> <?php echo get_the_title($program) ?>  </a></li>
@@ -54,7 +51,7 @@
     }
 ?>
 
-     <?php endwhile; endif; ?>
+
 
 
 </div>

@@ -22,6 +22,10 @@ function university_features(){
     // register_nav_menu( 'footerMenuLocationOne', 'Footer Menu Location One');
     // register_nav_menu( 'footerMenuLocationTwo', 'Footer Menu Location Two');
     add_theme_support('title-tag' );
+    // resim eklemeyi aktifleştirme   FAKAT program veya professor gibi post-type larda görünmesi için mu-plugins lere eklemeliyiz.
+    add_theme_support( 'post-thumbnails' );
+    add_image_size('professorLandscape', 400,260,true );//true means crop the image true yaerine array(''left, 'top.....) ama gerek yok
+    add_image_size('professorPortrait', 480,650,true );//true means crop the image
 }
 add_action('after_setup_theme', 'university_features' );
 
@@ -29,10 +33,6 @@ add_action('after_setup_theme', 'university_features' );
 add_filter( 'use_block_editor_for_post_type', '__return_false',100 );
 // normalde classic editor de bu işi yapar
 
-
-// resim eklemeyi aktifleştirme
-add_theme_support( 'post-thumbnails' );
-add_image_size( 'small2', 200, 200, true);
 
 
 
