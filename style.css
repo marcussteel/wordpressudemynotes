@@ -1,0 +1,26 @@
+/*
+Theme Name: Marcus Page Design
+Theme URI: https: wwetr.com
+Author : Marcus Steel
+Description: Special Theme
+Version: 1.0
+Text Domain:sgtheme
+*/
+
+
+
+footer {
+    background: #222;
+    color: #FFF;
+}
+
+.navigation {
+    padding-left: 0;
+    list-style: none;
+    padding-top: 60px;
+}
+
+.navigation li {
+    display: inline;
+    margin-right: 20px;
+}
